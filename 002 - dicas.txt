@@ -1,0 +1,61 @@
+Dicas para baixar o código fonte:
+
+O código da Aula 02 vem com o projeto completo com a pasta vendor
+basta rodar o comando... php artisan serve ...
+Os demais fontes vão estar sem a pasta vendor do Composer e a pasta de módulos do Node JS
+Assim ... antes de rodar o projeto vc deve rodar:
+composer update - para criar a pasta vendor
+npm install - para criar a pasta de módulos do node js
+
+.........
+
+Laravel:
+https://laravel.com/docs/5.5
+
+Comando:
+composer create-project --prefer-dist laravel/laravel blog "5.5.*"
+eu fiz foi ==> #lavaravel new blog --auth
+
+Rodar Servidor PHP:
+#php artisan serve
+
+Ativar sistema de login:
+***ATENÇÃO***
+**no laravel 7 eu crio o projeto com o --auth enão nem executo essa parte de instalação do auth
+#php artisan make:auth
+no laravel 7
+#composer require laravel/ui
+#php artisan ui vue --auth
+Ver 002.pdf
+
+Criar tabelas do Banco de Dados:
+lembrando que deve estar habilitado o extension=pdo_sqlite no aquivo php.ini
+#php artisan migrate
+
+**qui já é pra tudo funcionar, registro e login
+**para fazer funcionar o vue instalar o node
+npm i
+
+
+
+
+
+
+
+
+
+
+AdminLTE:
+    https://adminlte.io/themes/AdminLTE/index.html
+
+laravel-5.5-pt-BR-localization:
+    https://github.com/enniosousa/laravel-5.5-pt-BR-localization
+
+    obs: Você pode remover o diretório .git para poder incluir
+    e versionar os arquivos deste projeto no seu repositório:
+
+    rm -rf pt-BR/.git/
+
+    Configurar o Framework para utilizar a linguagem como Default
+    // Linha 81 do arquivo config/app.php
+    'locale' => 'pt-BR',
