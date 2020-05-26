@@ -1,10 +1,12 @@
 <template>
-  <div class="card">
-    <!-- <div class="card-header bg-primary"> !-->
-    <div v-bind:class="defineCor">{{titulo}}</div>
+  <div class="col-md-12">
+    <div class="card">
+      <!-- <div class="card-header bg-primary"> !-->
+      <div v-bind:class="defineCor">{{titulo}}</div>
 
-    <div class="card-body">
-      <slot></slot>
+      <div class="card-body">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -14,7 +16,7 @@ export default {
   props: ["titulo", "cor"],
   computed: {
     defineCor: function() {
-      return "card-header bg-" + (this.cor||"primary") ;
+      return "card-header bg-" + (this.cor || "primary");
     }
   }
 };

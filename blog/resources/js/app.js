@@ -22,6 +22,9 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('topo', require('./components/Topo.vue').default);
 Vue.component('painel', require('./components/Painel.vue').default);
+Vue.component('caixa', require('./components/Caixa.vue').default);
+Vue.component('pagina', require('./components/Pagina.vue').default);
+Vue.component('tabela-lista', require('./components/TabelaLista.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
