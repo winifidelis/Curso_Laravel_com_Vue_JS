@@ -12,7 +12,7 @@
         detalhe="#detalhe"
         editar="#editar"
         deletar="#deletar"
-        token=""
+        token="321321321"
         >
     </tabela-lista>
     </painel>

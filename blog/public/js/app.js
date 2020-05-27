@@ -2089,8 +2089,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["titulos", "itens", "criar", "detalhe", "editar", "deletar", "token"]
+  props: ["titulos", "itens", "criar", "detalhe", "editar", "deletar", "token"],
+  data: function data() {
+    return {
+      buscar: ""
+    };
+  },
+  methods: {
+    executaForm: function executaForm(index) {
+      document.getElementById("id").submit();
+    }
+  },
+  computed: {
+    lista: function lista() {
+      var _this = this;
+
+      return this.itens.filter(function (res) {
+        for (var k = 0; k < res.length; k++) {
+          if ((res[k] + "").toLowerCase().indexOf(_this.buscar.toLowerCase()) >= 0) {
+            return true;
+          }
+        }
+
+        return false;
+      }); //return this.itens;
+    }
+  }
 });
 
 /***/ }),
@@ -38470,9 +38512,41 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.criar
-      ? _c("a", { attrs: { href: _vm.criar } }, [_vm._v("Criar")])
-      : _vm._e(),
+    _c("div", { staticClass: "form-inline" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _vm.criar
+          ? _c("a", { attrs: { href: _vm.criar } }, [_vm._v("Criar")])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group float-sm-right" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.buscar,
+                expression: "buscar"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "search", placeholder: "Buscar" },
+            domProps: { value: _vm.buscar },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.buscar = $event.target.value
+              }
+            }
+          })
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("br"),
     _vm._v(" "),
     _c("table", { staticClass: "table table-striped table-hover" }, [
       _c("thead", [
@@ -38493,7 +38567,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.itens, function(item) {
+        _vm._l(_vm.lista, function(item, index) {
           return _c(
             "tr",
             [
@@ -38506,7 +38580,13 @@ var render = function() {
                     _vm.deletar && _vm.token
                       ? _c(
                           "form",
-                          { attrs: { action: "index.html", method: "post" } },
+                          {
+                            attrs: {
+                              id: index,
+                              action: _vm.deletar,
+                              method: "post"
+                            }
+                          },
                           [
                             _c("input", {
                               attrs: {
@@ -38533,30 +38613,63 @@ var render = function() {
                                 ])
                               : _vm._e(),
                             _vm._v(" "),
-                            _vm.deletar
-                              ? _c("a", { attrs: { href: _vm.deletar } }, [
-                                  _vm._v("Deletar")
-                                ])
-                              : _vm._e()
+                            _c(
+                              "a",
+                              {
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.executaForm(index)
+                                  }
+                                }
+                              },
+                              [_vm._v("Deletar")]
+                            )
                           ]
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.detalhe
-                      ? _c("a", { attrs: { href: _vm.detalhe } }, [
-                          _vm._v("Detalhes |")
+                    !_vm.token
+                      ? _c("span", [
+                          _vm.detalhe
+                            ? _c("a", { attrs: { href: _vm.detalhe } }, [
+                                _vm._v("Detalhes |")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.editar
+                            ? _c("a", { attrs: { href: _vm.editar } }, [
+                                _vm._v("Editar |")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.deletar
+                            ? _c("a", { attrs: { href: _vm.deletar } }, [
+                                _vm._v("Deletar")
+                              ])
+                            : _vm._e()
                         ])
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.editar
-                      ? _c("a", { attrs: { href: _vm.editar } }, [
-                          _vm._v("Editar |")
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.deletar
-                      ? _c("a", { attrs: { href: _vm.deletar } }, [
-                          _vm._v("Deletar")
+                    _vm.token && !_vm.deletar
+                      ? _c("span", [
+                          _vm.detalhe
+                            ? _c("a", { attrs: { href: _vm.detalhe } }, [
+                                _vm._v("Detalhes |")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.editar
+                            ? _c("a", { attrs: { href: _vm.editar } }, [
+                                _vm._v("Editar |")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.deletar
+                            ? _c("a", { attrs: { href: _vm.deletar } }, [
+                                _vm._v("Deletar")
+                              ])
+                            : _vm._e()
                         ])
                       : _vm._e()
                   ])
@@ -51351,8 +51464,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\PMAG\Desktop\WiniProjetos\Curso_Laravel_com_Vue_JS\blog\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\PMAG\Desktop\WiniProjetos\Curso_Laravel_com_Vue_JS\blog\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Usuario\Desktop\projetos\Curso_Laravel_com_Vue_JS\blog\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Usuario\Desktop\projetos\Curso_Laravel_com_Vue_JS\blog\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
