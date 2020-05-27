@@ -22,7 +22,13 @@
 </head>
 
 <body>
-    <div id="app">
+
+
+
+    <div id="app" style="display:none">
+
+
+
         <topo titulo="{{ config('app.name', 'Laravel') }}" url='http://www.google.com.br'>
 
             <!-- Authentication Links -->

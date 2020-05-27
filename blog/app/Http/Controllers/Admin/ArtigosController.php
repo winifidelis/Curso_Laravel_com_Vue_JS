@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Artigo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ArtigosController extends Controller
 {
@@ -14,7 +16,12 @@ class ArtigosController extends Controller
      */
     public function index()
     {
-        return view('admin.artigos.index');
+        $listaMigalhas = json_encode([
+            ["titulo" => "Home", "url" => route('home')],
+            ["titulo" => "Lista de artigos", "url" => ""]
+        ]);
+        $listaArtigos = json_encode(Artigo::all('id','titulo','descricao','autor','data'));
+        return view('admin.artigos.index', compact('listaMigalhas','listaArtigos'));
     }
 
     /**
@@ -35,7 +42,19 @@ class ArtigosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $data = $request->all();
+        $validacao = Validator::make($data,[
+            "titulo" => "required"
+        ]);
+        if($validacao->fails()){
+            return redirect()->back()->withErrors($validacao)->withInput();
+        }
+
+
+        
+        $artigos = Artigo::create($data);
+        return redirect()->back();
     }
 
     /**

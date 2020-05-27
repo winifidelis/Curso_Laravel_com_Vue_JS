@@ -6,7 +6,12 @@
 
 require('./bootstrap');
 
+//PARA ADIDIONAR AS DEPENDENCIAS DO VUEX
+//npm i vuex --save-dev
+
 window.Vue = require('vue');
+import Vuex from 'Vuex';
+Vue.use(Vuex);
 
 /**
  * The following block of code may be used to automatically register your
@@ -16,8 +21,23 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
+
+//Vuex
+const store = new Vuex.Store({
+    state: {
+        item: {}
+    },
+    //abaixo possuo metodos e serviços que manipulam o camarada acima
+    mutations: {
+        setItem(state, obj) {
+            state.item = obj;
+        }
+    }
+});
+
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('topo', require('./components/Topo.vue').default);
@@ -25,6 +45,10 @@ Vue.component('painel', require('./components/Painel.vue').default);
 Vue.component('caixa', require('./components/Caixa.vue').default);
 Vue.component('pagina', require('./components/Pagina.vue').default);
 Vue.component('tabela-lista', require('./components/TabelaLista.vue').default);
+Vue.component('migalhas', require('./components/Migalhas.vue').default);
+Vue.component('modal', require('./components/modal/Modal.vue').default);
+Vue.component('modal-link', require('./components/modal/ModalLink.vue').default);
+Vue.component('formulario', require('./components/Formulario.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,4 +58,8 @@ Vue.component('tabela-lista', require('./components/TabelaLista.vue').default);
 
 const app = new Vue({
     el: '#app',
+    store,
+    mounted: function(){
+        document.getElementById('app').style.display = "block";
+    }
 });

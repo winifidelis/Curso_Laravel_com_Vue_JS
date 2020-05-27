@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+<migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
+
 <!-- https://www.w3schools.com/colors/colors_picker.asp !-->
 <!-- https://ionicons.com/v2/ !-->
 <div class="container">

@@ -21,13 +21,13 @@ Auth::routes();
 
 /*
 Verb	    URI	                  Action	Route Name
-GET  	    /admin	              index	    admin.index
-GET	        /admin/create	      create	admin.create
-POST	    /admin	              store	    admin.store
-GET	        /admin/{photo}	      show	    admin.show
-GET	        /admin/{photo}/edit  edit	    admin.edit
-PUT/PATCH	/admin/{photo}	      update	admin.update
-DELETE	    /admin/{photo}	      destroy	admin.destroy
+GET  	    /artigos	              index	    artigos.index
+GET	        /artigos/create	      create	artigos.create
+POST	    /artigos	              store	    artigos.store
+GET	        /artigos/{photo}	      show	    artigos.show
+GET	        /artigos/{photo}/edit  edit	    artigos.edit
+PUT/PATCH	/artigos/{photo}	      update	artigos.update
+DELETE	    /artigos/{photo}	      destroy	admin.destroy
 */
 
 Route::get('/home', 'HomeController@index')->name('home');
