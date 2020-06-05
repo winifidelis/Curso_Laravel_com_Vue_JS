@@ -20,8 +20,8 @@ class ArtigosController extends Controller
             ["titulo" => "Home", "url" => route('home')],
             ["titulo" => "Lista de artigos", "url" => ""]
         ]);
-        $listaArtigos = json_encode(Artigo::all('id','titulo','descricao','autor','data'));
-        return view('admin.artigos.index', compact('listaMigalhas','listaArtigos'));
+        $listaArtigos = json_encode(Artigo::all('id', 'titulo', 'descricao', 'autor', 'data'));
+        return view('admin.artigos.index', compact('listaMigalhas', 'listaArtigos'));
     }
 
     /**
@@ -44,15 +44,18 @@ class ArtigosController extends Controller
     {
         //dd($request->all());
         $data = $request->all();
-        $validacao = Validator::make($data,[
-            "titulo" => "required"
+        $validacao = Validator::make($data, [
+            "titulo" => "required",
+            "descricao" => "required",
+            "conteude" => "required",
+            "data" => "required",
         ]);
-        if($validacao->fails()){
+        if ($validacao->fails()) {
             return redirect()->back()->withErrors($validacao)->withInput();
         }
 
 
-        
+
         $artigos = Artigo::create($data);
         return redirect()->back();
     }
@@ -65,7 +68,9 @@ class ArtigosController extends Controller
      */
     public function show($id)
     {
-        //
+        //o laravel retornará um json
+        //dd($id);
+        return Artigo::find($id);
     }
 
     /**

@@ -23,7 +23,13 @@
 
         <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
 
-        <tabela-lista v-bind:titulos="['#','Titulo','Descrição','Autor','Data']" v-bind:itens="{{$listaArtigos}}" ordem="asc" ordemcol="0" criar="#criar" detalhe="#detalhe" editar="#editar" deletar="#deletar" token="321321321" modal="sim">
+        <tabela-lista
+        v-bind:titulos="['#','Titulo','Descrição','Autor','Data']"
+        v-bind:itens="{{$listaArtigos}}"
+        ordem="asc" ordemcol="0"
+        criar="#criar" detalhe="/admin/artigos/" editar="#editar" deletar="#deletar" token="321321321"
+        modal="sim">
+
         </tabela-lista>
     </painel>
 </pagina>
