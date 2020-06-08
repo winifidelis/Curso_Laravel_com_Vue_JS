@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Artigo;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $lista = Artigo::listaArtigosSite(6);
+    return view('site', compact('lista'));
 });
 
 Auth::routes();
@@ -30,9 +32,11 @@ PUT/PATCH	/artigos/{photo}	      update	artigos.update
 DELETE	    /artigos/{photo}	      destroy	admin.destroy
 */
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdminController@index')->name('admin');
 
 Route::middleware(['auth'])->prefix('admin')->namespace('Admin')->group(function(){
     //com isso abaixo eu ja tenho acesso a todas as funções do controller
     Route::resource('artigos', 'ArtigosController');
+    Route::resource('usuarios', 'UsuariosController');
+    Route::resource('autores', 'AutoresController');
 });

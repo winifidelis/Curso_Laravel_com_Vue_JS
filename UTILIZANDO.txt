@@ -36,6 +36,23 @@ lembrando que deve estar habilitado o extension=pdo_sqlite no aquivo php.ini
 **para fazer funcionar o vue instalar o node
 npm i
 
+criando controller com ressource
+ja vem com todos os métodos do CRUD
+#php artisan make:controller Admin/UsuariosController --resource
+
+
+Migração para adicionar coluna em uma tabela ja existente
+php artisan make:migration add_autor_table_users --table=users
+
+
+ADICIONANDO O CKEditor
+para ver => https://github.com/dangvanthanh/vue-ckeditor2
+para ver => https://github.com/dangvanthanh/vue-ckeditor2/wiki/Getting-Started
+para instalar => npm install vue-ckeditor2 --save
+adiconar a linha abaixo em "app.blade.php" no arquivo principal
+<script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
+depois adicionei ele no arquvo app.js dos componentes
+
 
 
 

@@ -31,7 +31,9 @@
 
           <!-- BOTÕES DE AÇÕES!-->
           <td v-if="detalhe || editar || deletar">
-            <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar" method="post">
+            <!-- o method do formulário está post, mas ele é modificado abaixo !-->
+            <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar + item.id" method="post">
+              <!-- ELE É MODIFICADO AQUI !--> 
               <input type="hidden" name="_method" value="DELETE" />
               <input type="hidden" name="_token" v-bind:value="token" />
 
@@ -39,9 +41,9 @@
               <modal-link v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" tipo='link' nome='detalhe' titulo='Detalhe |' css=''></modal-link>
 
               <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-              <modal-link v-if="editar && modal" v-bind:item="item" tipo='link' nome='editar' titulo='Editar |' css=''></modal-link>
+              <modal-link v-if="editar && modal" v-bind:item="item" v-bind:url="editar" tipo='link' nome='editar' titulo='Editar |' css=''></modal-link>
 
-              <a href="#" v-on:click="executaForm(index)">Deletar</a>
+              <a href="#" v-on:click="executaForm(index)">Deletar </a>
 
             </form>
             <span v-if="!token">
@@ -49,7 +51,7 @@
               <modal-link v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" tipo='link' nome='detalhe' titulo='Detalhe |' css=''></modal-link>
 
               <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-              <modal-link v-if="editar && modal" tipo='link' nome='editar' titulo='Editar |' css=''></modal-link>
+              <modal-link v-if="editar && modal" v-bind:item="item" v-bind:url="editar" tipo='link' nome='editar' titulo='Editar |' css=''></modal-link>
               <a v-if="deletar" v-bind:href="deletar">Deletar</a>
             </span>
             <span v-if="token && !deletar">
@@ -57,7 +59,7 @@
               <modal-link v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" tipo='link' nome='detalhe' titulo='Detalhe |' css=''></modal-link>
 
               <a v-if="editar && !modal" v-bind:href="editar">Editar</a>
-              <modal-link v-if="editar && modal" tipo='link' nome='editar' titulo='Editar |' css=''></modal-link>
+              <modal-link v-if="editar && modal" v-bind:item="item" v-bind:url="editar" tipo='link' nome='editar' titulo='Editar |' css=''></modal-link>
             </span>
           </td>
           <!-- /BOTÕES DE AÇÕES!-->
@@ -92,7 +94,9 @@ export default {
   },
   methods: {
     executaForm: function(index) {
-      document.getElementById("id").submit();
+      console.log('TRY')
+      console.log(document.getElementById(index))
+      document.getElementById(index).submit();
     },
     ordenaColuna: function(coluna) {
       this.ordemcolAux = coluna;
@@ -106,6 +110,8 @@ export default {
   computed: {
     lista: function() {
 
+      let lista = this.itens.data;
+
       let ordem = this.ordemAux;
       let ordemcol = this.ordemcolAux;
       ordem = ordem.toLowerCase();
@@ -113,14 +119,14 @@ export default {
 
       if (ordem == "asc") {
         //sort() ordenação em javascript
-        this.itens.sort(function(a, b) {
+        lista.sort(function(a, b) {
           if (Object.values(a)[ordemcol] > Object.values(b)[ordemcol]) {return 1;}
           if (Object.values(a)[ordemcol] < Object.values(b)[ordemcol]) {return -1;}
           return 0;
         });
       } else {
         //sort() ordenação em javascript
-        this.itens.sort(function(a, b) {
+        lista.sort(function(a, b) {
           if (Object.values(a)[ordemcol] < Object.values(b)[ordemcol]) {return 1;}
           if (Object.values(a)[ordemcol] > Object.values(b)[ordemcol]) {return -1;}
           return 0;
@@ -128,7 +134,7 @@ export default {
       }
 
       if (this.buscar) {
-        return this.itens.filter(res => {
+        return lista.filter(res => {
           res = Object.values(res);
           for (let k = 0; k < res.length; k++) {
             if (
@@ -141,7 +147,7 @@ export default {
           return false;
         });
       } else {
-        return this.itens;
+        return lista;
       }
     }
   }

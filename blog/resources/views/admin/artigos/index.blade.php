@@ -22,15 +22,19 @@
     <painel titulo='Lista de artigos'>
 
         <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
-
         <tabela-lista
         v-bind:titulos="['#','Titulo','Descrição','Autor','Data']"
-        v-bind:itens="{{$listaArtigos}}"
-        ordem="asc" ordemcol="0"
-        criar="#criar" detalhe="/admin/artigos/" editar="#editar" deletar="#deletar" token="321321321"
+        v-bind:itens="{{json_encode($listaArtigos)}}"
+        ordem="desc" ordemcol="0"
+        criar="#criar" detalhe="/admin/artigos/" editar="/admin/artigos/" deletar="/admin/artigos/" token="{{ csrf_token() }}"
         modal="sim">
 
         </tabela-lista>
+
+        <div aling="center">
+            {{$listaArtigos->links()}}
+        </div>
+
     </painel>
 </pagina>
 
@@ -50,11 +54,20 @@
         </div>
         <div class="form-group">
             <label for="data">Data</label>
-            <input type="datetime-local" class="form-control" id="data" name="data" placeholder="Data" value="{{old('data')}}">
+            <input type="date" class="form-control" id="data" name="data" placeholder="Data" value="{{old('data')}}">
         </div>
         <div class="form-group">
-            <label for="conteudo">Conteúdo</label>
-            <textarea id="conteudo" name="conteudo" rows="5" class="form-control">{{old('conteudo')}}</textarea>
+            <label for="addconteudo">Conteúdo</label>
+            <ckeditor
+                id="addconteudo" name="conteudo"
+                value="{{old('conteudo')}}" 
+                v-bind:config="{
+                    toolbar: [
+                    ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript']
+                    ],
+                    height: 200
+                }" 
+            />
         </div>
     </formulario>
     <span slot="botoes">
@@ -64,23 +77,36 @@
 </modal>
 
 <modal nome="editar" titulo="Editar dados">
-    <formulario id="formEditar" css="" action="#" method="post" enctype="" token="">
+    <formulario id="formEditar" css="" v-bind:action="'/admin/artigos/' + $store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}">
         <input type="hidden" id="id" v-model="$store.state.item.id">
         <div class="form-group">
             <label for="titulo">Título</label>
-            <input type="text" class="form-control" id="titulo" v-model="$store.state.item.titulo" placeholder="Título">
+            <input type="text" class="form-control" id="titulo" name="titulo"  v-model="$store.state.item.titulo" placeholder="Título">
         </div>
         <div class="form-group">
             <label for="descricao">Descrição</label>
-            <input type="text" class="form-control" id="descricao" v-model="$store.state.item.descricao" placeholder="Descrição">
+            <input type="text" class="form-control" id="descricao" name="descricao" v-model="$store.state.item.descricao" placeholder="Descrição">
         </div>
         <div class="form-group">
             <label for="autor">Autor</label>
-            <input type="text" class="form-control" id="autor" v-model="$store.state.item.autor" placeholder="Autor">
+            <input type="text" class="form-control" id="autor" name="autor" v-model="$store.state.item.autor" placeholder="Autor">
         </div>
         <div class="form-group">
             <label for="data">Data</label>
-            <input type="text" class="form-control" id="data" v-model="$store.state.item.data" placeholder="Data">
+            <input type="date" class="form-control" id="data" name="data" placeholder="Data" v-model="$store.state.item.data">
+        </div>
+        <div class="form-group">
+            <label for="editconteudo">Conteúdo</label>
+            <ckeditor
+                id="editconteudo" name="conteudo"
+                v-model="$store.state.item.conteudo" 
+                v-bind:config="{
+                    toolbar: [
+                    ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript']
+                    ],
+                    height: 200
+                }" 
+            />
         </div>
     </formulario>
     <span slot="botoes">

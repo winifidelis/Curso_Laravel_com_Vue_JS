@@ -3012,6 +3012,35 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ArtigoCard.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ArtigoCard.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['titulo', 'descricao', 'link', 'imagem', 'data', 'autor', 'sm', 'md']
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Caixa.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Caixa.vue?vue&type=script&lang=js& ***!
@@ -3327,6 +3356,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["titulos", "itens", "criar", "detalhe", "editar", "deletar", "token", "ordem", "ordemcol", "modal"],
   data: function data() {
@@ -3340,7 +3371,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     executaForm: function executaForm(index) {
-      document.getElementById("id").submit();
+      console.log('TRY');
+      console.log(document.getElementById(index));
+      document.getElementById(index).submit();
     },
     ordenaColuna: function ordenaColuna(coluna) {
       this.ordemcolAux = coluna;
@@ -3356,6 +3389,7 @@ __webpack_require__.r(__webpack_exports__);
     lista: function lista() {
       var _this = this;
 
+      var lista = this.itens.data;
       var ordem = this.ordemAux;
       var ordemcol = this.ordemcolAux;
       ordem = ordem.toLowerCase();
@@ -3363,7 +3397,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (ordem == "asc") {
         //sort() ordenação em javascript
-        this.itens.sort(function (a, b) {
+        lista.sort(function (a, b) {
           if (Object.values(a)[ordemcol] > Object.values(b)[ordemcol]) {
             return 1;
           }
@@ -3376,7 +3410,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         //sort() ordenação em javascript
-        this.itens.sort(function (a, b) {
+        lista.sort(function (a, b) {
           if (Object.values(a)[ordemcol] < Object.values(b)[ordemcol]) {
             return 1;
           }
@@ -3390,7 +3424,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (this.buscar) {
-        return this.itens.filter(function (res) {
+        return lista.filter(function (res) {
           res = Object.values(res);
 
           for (var k = 0; k < res.length; k++) {
@@ -3402,7 +3436,7 @@ __webpack_require__.r(__webpack_exports__);
           return false;
         });
       } else {
-        return this.itens;
+        return lista;
       }
     }
   }
@@ -3531,11 +3565,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["tipo", "nome", "titulo", "css", "item"],
+  props: ["tipo", "nome", "titulo", "css", "item", "url"],
   methods: {
     preencheFormulario: function preencheFormulario() {
-      this.$store.commit('setItem', this.item);
+      var _this = this;
+
+      //console.log("1");
+      axios.get(this.url + this.item.id).then(function (res) {
+        //agora eu tenho acesso ao retorno do json
+        //console.log("2");
+        //console.log(res.data);
+        _this.$store.commit("setItem", res.data);
+      }); //this.$store.commit('setItem', this.item);
     }
   }
 });
@@ -39715,6 +39796,80 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-ckeditor2/dist/vue-ckeditor2.esm.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/vue-ckeditor2/dist/vue-ckeditor2.esm.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var t=(new Date).getTime();/* harmony default export */ __webpack_exports__["default"] = (function(t,n,e,i,s,o,a,c,r,d){"boolean"!=typeof a&&(r=c,c=a,a=!1);var u,h="function"==typeof e?e.options:e;if(t&&t.render&&(h.render=t.render,h.staticRenderFns=t.staticRenderFns,h._compiled=!0,s&&(h.functional=!0)),i&&(h._scopeId=i),o?(u=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),n&&n.call(this,r(t)),t&&t._registeredComponents&&t._registeredComponents.add(o)},h._ssrRegister=u):n&&(u=a?function(){n.call(this,d(this.$root.$options.shadowRoot))}:function(t){n.call(this,c(t))}),u)if(h.functional){var f=h.render;h.render=function(t,n){return u.call(n),f(t,n)}}else{var l=h.beforeCreate;h.beforeCreate=l?[].concat(l,u):[u]}return e}({render:function(){var t=this.$createElement,n=this._self._c||t;return n("div",{staticClass:"ckeditor"},[n("textarea",{attrs:{name:this.name,id:this.id,types:this.types,config:this.config,disabled:this.readOnlyMode},domProps:{value:this.value}})])},staticRenderFns:[]},void 0,{name:"VueCkeditor",props:{name:{type:String,default:function(){return"editor-".concat(++t)}},value:{type:String},id:{type:String,default:function(){return"editor-".concat(t)}},types:{type:String,default:function(){return"classic"}},config:{type:Object,default:function(){}},instanceReadyCallback:{type:Function},readOnlyMode:{type:Boolean,default:function(){return!1}}},data:function(){return{instanceValue:""}},computed:{instance:function(){return CKEDITOR.instances[this.id]}},watch:{value:function(t){try{this.instance&&this.update(t)}catch(t){}},readOnlyMode:function(t){this.instance.setReadOnly(t)}},mounted:function(){this.create()},methods:{create:function(){var t=this;"undefined"==typeof CKEDITOR?console.log("CKEDITOR is missing (http://ckeditor.com/)"):("inline"===this.types?CKEDITOR.inline(this.id,this.config):CKEDITOR.replace(this.id,this.config),this.instance.setData(this.value),this.instance.on("instanceReady",function(){t.instance.setData(t.value)}),this.instance.on("change",this.onChange),this.instance.on("mode",this.onMode),this.instance.on("blur",function(n){t.$emit("blur",n)}),this.instance.on("focus",function(n){t.$emit("focus",n)}),this.instance.on("contentDom",function(n){t.$emit("contentDom",n)}),CKEDITOR.on("dialogDefinition",function(n){t.$emit("dialogDefinition",n)}),this.instance.on("fileUploadRequest",function(n){t.$emit("fileUploadRequest",n)}),this.instance.on("fileUploadResponse",function(n){setTimeout(function(){t.onChange()},0),t.$emit("fileUploadResponse",n)}),void 0!==this.instanceReadyCallback&&this.instance.on("instanceReady",this.instanceReadyCallback),this.$once("hook:beforeDestroy",function(){t.destroy()}))},update:function(t){this.instanceValue!==t&&(this.instance.setData(t,{internal:!1}),this.instanceValue=t)},destroy:function(){try{var t=window.CKEDITOR;t.instances&&t.instances[this.id]&&t.instances[this.id].destroy()}catch(t){}},onMode:function(){var t=this;if("source"===this.instance.mode){var n=this.instance.editable();n.attachListener(n,"input",function(){t.onChange()})}},onChange:function(){var t=this.instance.getData();t!==this.value&&(this.$emit("input",t),this.instanceValue=t)}}},void 0,!1,void 0,void 0,void 0));
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ArtigoCard.vue?vue&type=template&id=7be5b3a9&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ArtigoCard.vue?vue&type=template&id=7be5b3a9& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { class: "col-sm-" + (_vm.sm || "6") + " col-md-" + (_vm.md || 4) },
+    [
+      _c("div", { staticClass: "card" }, [
+        _c("img", {
+          staticClass: "card-img-top",
+          attrs: {
+            src:
+              "https://coletiva.net/files/e4da3b7fbbce2345d7772b0674a318d5/midia_foto/20170713/118815-maior_artigo_jul17.jpg",
+            alt: "..."
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("small", [_vm._v(_vm._s(_vm.data) + " - " + _vm._s(_vm.autor))]),
+          _vm._v(" "),
+          _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.titulo))]),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text" }, [
+            _vm._v(_vm._s(_vm.descricao))
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { href: _vm.link, role: "button" }
+              },
+              [_vm._v("Leia mais")]
+            )
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Caixa.vue?vue&type=template&id=09d22699&":
 /*!********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Caixa.vue?vue&type=template&id=09d22699& ***!
@@ -40068,7 +40223,7 @@ var render = function() {
                           {
                             attrs: {
                               id: index,
-                              action: _vm.deletar,
+                              action: _vm.deletar + item.id,
                               method: "post"
                             }
                           },
@@ -40096,6 +40251,7 @@ var render = function() {
                               ? _c("modal-link", {
                                   attrs: {
                                     item: item,
+                                    url: _vm.detalhe,
                                     tipo: "link",
                                     nome: "detalhe",
                                     titulo: "Detalhe |",
@@ -40114,6 +40270,7 @@ var render = function() {
                               ? _c("modal-link", {
                                   attrs: {
                                     item: item,
+                                    url: _vm.editar,
                                     tipo: "link",
                                     nome: "editar",
                                     titulo: "Editar |",
@@ -40132,7 +40289,7 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Deletar")]
+                              [_vm._v("Deletar ")]
                             )
                           ],
                           1
@@ -40153,6 +40310,7 @@ var render = function() {
                               ? _c("modal-link", {
                                   attrs: {
                                     item: item,
+                                    url: _vm.detalhe,
                                     tipo: "link",
                                     nome: "detalhe",
                                     titulo: "Detalhe |",
@@ -40170,6 +40328,8 @@ var render = function() {
                             _vm.editar && _vm.modal
                               ? _c("modal-link", {
                                   attrs: {
+                                    item: item,
+                                    url: _vm.editar,
                                     tipo: "link",
                                     nome: "editar",
                                     titulo: "Editar |",
@@ -40202,6 +40362,7 @@ var render = function() {
                               ? _c("modal-link", {
                                   attrs: {
                                     item: item,
+                                    url: _vm.detalhe,
                                     tipo: "link",
                                     nome: "detalhe",
                                     titulo: "Detalhe |",
@@ -40219,6 +40380,8 @@ var render = function() {
                             _vm.editar && _vm.modal
                               ? _c("modal-link", {
                                   attrs: {
+                                    item: item,
+                                    url: _vm.editar,
                                     tipo: "link",
                                     nome: "editar",
                                     titulo: "Editar |",
@@ -52767,6 +52930,8 @@ Vue.component('migalhas', __webpack_require__(/*! ./components/Migalhas.vue */ "
 Vue.component('modal', __webpack_require__(/*! ./components/modal/Modal.vue */ "./resources/js/components/modal/Modal.vue")["default"]);
 Vue.component('modal-link', __webpack_require__(/*! ./components/modal/ModalLink.vue */ "./resources/js/components/modal/ModalLink.vue")["default"]);
 Vue.component('formulario', __webpack_require__(/*! ./components/Formulario.vue */ "./resources/js/components/Formulario.vue")["default"]);
+Vue.component('ckeditor', __webpack_require__(/*! vue-ckeditor2 */ "./node_modules/vue-ckeditor2/dist/vue-ckeditor2.esm.js")["default"]);
+Vue.component('artigocard', __webpack_require__(/*! ./components/ArtigoCard.vue */ "./resources/js/components/ArtigoCard.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -52825,6 +52990,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/ArtigoCard.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/ArtigoCard.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ArtigoCard_vue_vue_type_template_id_7be5b3a9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArtigoCard.vue?vue&type=template&id=7be5b3a9& */ "./resources/js/components/ArtigoCard.vue?vue&type=template&id=7be5b3a9&");
+/* harmony import */ var _ArtigoCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ArtigoCard.vue?vue&type=script&lang=js& */ "./resources/js/components/ArtigoCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ArtigoCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ArtigoCard_vue_vue_type_template_id_7be5b3a9___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ArtigoCard_vue_vue_type_template_id_7be5b3a9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ArtigoCard.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ArtigoCard.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/ArtigoCard.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ArtigoCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ArtigoCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ArtigoCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ArtigoCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ArtigoCard.vue?vue&type=template&id=7be5b3a9&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/ArtigoCard.vue?vue&type=template&id=7be5b3a9& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ArtigoCard_vue_vue_type_template_id_7be5b3a9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ArtigoCard.vue?vue&type=template&id=7be5b3a9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ArtigoCard.vue?vue&type=template&id=7be5b3a9&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ArtigoCard_vue_vue_type_template_id_7be5b3a9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ArtigoCard_vue_vue_type_template_id_7be5b3a9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

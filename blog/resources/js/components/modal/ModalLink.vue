@@ -59,11 +59,11 @@ export default {
   props: ["tipo", "nome", "titulo", "css", "item", "url"],
   methods: {
     preencheFormulario: function() {
-      console.log("1");
+      //console.log("1");
       axios.get(this.url + this.item.id).then(res => {
         //agora eu tenho acesso ao retorno do json
-        console.log("2");
-        console.log(res.data);
+        //console.log("2");
+        //console.log(res.data);
         this.$store.commit("setItem", res.data);
       });
       //this.$store.commit('setItem', this.item);
