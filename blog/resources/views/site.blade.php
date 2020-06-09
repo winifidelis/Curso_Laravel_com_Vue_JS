@@ -12,9 +12,9 @@
 
             @foreach ($lista as $key => $value)
                 <artigocard 
-                    titulo = "{{$value->titulo}}"
-                    descricao = "{{$value->descricao}}"
-                    link = "#"
+                    titulo = "{{Str::limit($value->titulo,20)}}"
+                    descricao = "{{Str::limit($value->descricao,30)}}"
+                    link = "{{route('artigo',[$value->id, Str::slug($value->titulo, '-')])}}"
                     imagem = "https://coletiva.net/files/e4da3b7fbbce2345d7772b0674a318d5/midia_foto/20170713/118815-maior_artigo_jul17.jpg"
                     data = "{{$value->data}}"
                     autor = "{{$value->autor}}"
@@ -24,6 +24,7 @@
                 </artigocard>
             @endforeach
         </div>
+        <br>
         <div aling="center">
             {{$lista}}
         </div>

@@ -15,9 +15,18 @@ use App\Artigo;
 */
 
 Route::get('/', function () {
-    $lista = Artigo::listaArtigosSite(6);
+    $lista = Artigo::listaArtigosSite(3);
     return view('site', compact('lista'));
-});
+})->name('site');
+
+Route::get('/artigo/{id}/{titulo?}', function ($id) {
+    $artigo = Artigo::find($id);
+    if($artigo){
+        return view('artigo', compact('artigo'));
+    }
+    return redirect()->route('site');
+    
+})->name('artigo');
 
 Auth::routes();
 
@@ -32,11 +41,12 @@ PUT/PATCH	/artigos/{photo}	      update	artigos.update
 DELETE	    /artigos/{photo}	      destroy	admin.destroy
 */
 
-Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/admin', 'AdminController@index')->name('admin')->middleware('can:autor');
 
 Route::middleware(['auth'])->prefix('admin')->namespace('Admin')->group(function(){
     //com isso abaixo eu ja tenho acesso a todas as funções do controller
-    Route::resource('artigos', 'ArtigosController');
-    Route::resource('usuarios', 'UsuariosController');
-    Route::resource('autores', 'AutoresController');
+    Route::resource('artigos', 'ArtigosController')->middleware('can:autor');
+    Route::resource('usuarios', 'UsuariosController')->middleware('can:eAdmin');
+    Route::resource('autores', 'AutoresController')->middleware('can:eAdmin');
+    Route::resource('adm', 'AdminController')->middleware('can:eAdmin');
 });

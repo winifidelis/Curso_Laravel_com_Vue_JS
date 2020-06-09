@@ -27,7 +27,7 @@
       </thead>
       <tbody>
         <tr :key="index[0]" v-for="(item, index) in lista">
-          <td :key="i.id" v-for="i in item">{{i}}</td>
+          <td :key="i.id" v-for="i in item">{{i | formataData}}</td>
 
           <!-- BOTÕES DE AÇÕES!-->
           <td v-if="detalhe || editar || deletar">
@@ -105,6 +105,18 @@ export default {
       } else {
         this.ordemAux = "asc";
       }
+    }
+  },
+  filters:{
+    formataData: function(valor){
+      if(!valor) return '';
+      valor = valor.toString();
+      if(valor.split('-').length == 3){
+        //aqui signijfica que estou tratando a data
+        valor = valor.split("-");
+        return valor[2]+"/"+valor[1]+"/"+valor[0];
+      }
+      return valor;
     }
   },
   computed: {

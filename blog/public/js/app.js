@@ -3035,8 +3035,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['titulo', 'descricao', 'link', 'imagem', 'data', 'autor', 'sm', 'md']
+  props: ["titulo", "descricao", "link", "imagem", "data", "autor", "sm", "md"],
+  filters: {
+    formataData: function formataData(valor) {
+      if (!valor) return '';
+      valor = valor.toString();
+
+      if (valor.split('-').length == 3) {
+        //aqui signijfica que estou tratando a data
+        valor = valor.split("-");
+        return valor[2] + "/" + valor[1] + "/" + valor[0];
+      }
+
+      return valor;
+    }
+  }
 });
 
 /***/ }),
@@ -3383,6 +3403,20 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.ordemAux = "asc";
       }
+    }
+  },
+  filters: {
+    formataData: function formataData(valor) {
+      if (!valor) return '';
+      valor = valor.toString();
+
+      if (valor.split('-').length == 3) {
+        //aqui signijfica que estou tratando a data
+        valor = valor.split("-");
+        return valor[2] + "/" + valor[1] + "/" + valor[0];
+      }
+
+      return valor;
     }
   },
   computed: {
@@ -39840,7 +39874,13 @@ var render = function() {
         }),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
-          _c("small", [_vm._v(_vm._s(_vm.data) + " - " + _vm._s(_vm.autor))]),
+          _c("small", [
+            _vm._v(
+              _vm._s(_vm._f("formataData")(_vm.data)) +
+                " - " +
+                _vm._s(_vm.autor)
+            )
+          ]),
           _vm._v(" "),
           _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.titulo))]),
           _vm._v(" "),
@@ -40094,7 +40134,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-12" }, [
     _c("div", { staticClass: "card" }, [
-      _c("div", { class: _vm.defineCor }, [_vm._v(_vm._s(_vm.titulo))]),
+      _vm.titulo
+        ? _c("div", { class: _vm.defineCor }, [_vm._v(_vm._s(_vm.titulo))])
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [_vm._t("default")], 2)
     ])
@@ -40212,7 +40254,9 @@ var render = function() {
             { key: index[0] },
             [
               _vm._l(item, function(i) {
-                return _c("td", { key: i.id }, [_vm._v(_vm._s(i))])
+                return _c("td", { key: i.id }, [
+                  _vm._v(_vm._s(_vm._f("formataData")(i)))
+                ])
               }),
               _vm._v(" "),
               _vm.detalhe || _vm.editar || _vm.deletar
@@ -53788,8 +53832,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\PMAG\Desktop\WiniProjetos\Curso_Laravel_com_Vue_JS\blog\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\PMAG\Desktop\WiniProjetos\Curso_Laravel_com_Vue_JS\blog\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Usuario\Desktop\projetos\Curso_Laravel_com_Vue_JS\blog\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Usuario\Desktop\projetos\Curso_Laravel_com_Vue_JS\blog\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

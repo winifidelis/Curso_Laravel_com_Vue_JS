@@ -60,7 +60,7 @@ class Artigo extends Model
             ->join('users', 'users.id', '=', 'artigos.user_id')
             ->select('artigos.id', 'artigos.titulo', 'artigos.descricao', 'users.name as autor', 'artigos.data')
             ->whereNull('artigos.deleted_at')
-            ->whereDate('data','<=',date('Y-m-d'))
+            ->whereDate('data','>=',date('Y-m-d'))
             ->orderBy('data','DESC')
             ->paginate($paginate);
             

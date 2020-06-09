@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="card">
       <!-- <div class="card-header bg-primary"> !-->
-      <div v-bind:class="defineCor">{{titulo}}</div>
+      <div v-if="titulo" v-bind:class="defineCor">{{titulo}}</div>
 
       <div class="card-body">
         <slot></slot>
