@@ -50,3 +50,6 @@ Route::middleware(['auth'])->prefix('admin')->namespace('Admin')->group(function
     Route::resource('autores', 'AutoresController')->middleware('can:eAdmin');
     Route::resource('adm', 'AdminController')->middleware('can:eAdmin');
 });
+
+//PARA VERIFICAR O can:autor E can:eAdmin ABRIR O ARQUIVO AuthServiceProvider
+//\app\Providers\AuthServiceProvider.php
